@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styleh.css">
+    <title>Edit User</title>
+</head>
+<body>
+    <h2>Edit User</h2>
+    <form action="/manage_users/edit_user" method="POST">
+        <input type="text" name="new_user" placeholder="user name: {{ old_user }}" autofocus>
+        <input type="password" name="new_pass" placeholder="password: {{ old_pass }}">
+        <input type="email" name="new_email" placeholder="email: {{ old_email }}">
+        <label for="new_authorization">Authorization: {{ old_authorization }}</label>
+        <select name="new_authorization">
+            <option value="Select">-- Select New Authorization --</option>
+            <option value="manager">-- Admin --</option>
+            <option value="teacher">-- Teacher --</option>
+            <option value="student">-- Student --</option>
+         </select><br> 
+        <input type="submit" value="Save User">       
+   </form>
+   <a href="/manager/manage_users"><button type="button">Back</button></a> 
+    
+   {% if error %}
+       <p><strong>Error:</strong> {{ error }}
+   {% endif %}
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <title>Link CSS to HTML</title>
+            <link rel="stylesheet" href=../static/style_table.css />
+        </head>
+        <body>
+            <center>  
+            <h1>JOHN BRYCE</h1>
+            <img height=200 width=250 src= ../static/Images/john_bryce.png />
+            <h2>Courses Statistics</h2>
+            <table style="width:50%">
+                <tr style="height:40px"><th>Course</th><th>Number of Studets</th><th>Average grade</th><th>Passed Students(%)</th></tr>
+                {% for course, statistics in course_statistics.items() %}
+                    <tr><td>{{course}}</td><td>{{statistics[0]}}</td><td>{{statistics[1]}}</td><td>{{statistics[2]}}</td></tr> 
+                {% endfor %}                    
+            </table>
+            </center>
+        </body>
+        </html>   
+        

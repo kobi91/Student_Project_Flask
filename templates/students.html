@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../static/stylet.css">
+     <title>Student Panel</title>   
+</head>
+<body>
+     <div class="header">
+          <h2>Student Panel</h2>        
+          <a href="/logout"><button type="button" class="TButton">Logout</button></a>   
+     </div>     
+     <ul>       
+          {% for name,age,id,address,phone,email,course,grade,missing in student_statistics %}       
+               <div>   
+                 <a class="bold">Student Name: {{name}}</a><br>
+                 <a>Age: {{age}}&nbsp</a>
+                 <a>ID: {{id}}&nbsp</a> 
+                 <a>Address: {{address}}&nbsp</a>
+                 <a>Phone: {{phone}}&nbsp</a>
+                 <a>Email: {{email}}&nbsp</a>
+                 <a>Course: {{course}}&nbsp</a>
+                 <a>Grade: {{grade}}&nbsp</a>
+                 <a>Missing Lessons: {{missing}}</a>
+               </div>        
+          {% endfor %}                                               
+     </ul>
+</body>
+</html>
+

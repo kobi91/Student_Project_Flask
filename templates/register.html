@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styleh.css">
+    <title>register</title>
+</head>
+<body>
+    <h1>Create Account</h1>
+    <form action="/register/successfully" method="POST">
+        <input type="text" name="username" placeholder="Username" autofocus>
+        <input type="password" name="password" placeholder="Password">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="reg_code" placeholder="Register Code">
+        <input type="submit" value="Register">
+    </form>
+    <a href="/login"><button type="button">Back</button></a> 
+
+    {% if val %}
+       <p><strong>Error:</strong> {{ val }}
+    {% endif %}
+    
+</body>
+</html>

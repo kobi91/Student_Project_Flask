@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styleh.css">
+    <title>Edit Course</title>
+</head>
+<body>
+    <h2>Edit Course</h2>
+    <form action="/manage_courses/edit_course" method="POST">
+        <h3>Course: {{ course_name }}</h3>
+        <input type="text" name="teacher_name" placeholder="Teacher Name: {{ old_t_name }}" autofocus>
+        <input type="email" name="teacher_email" placeholder="Teacher Email: {{ old_email }}">
+        <input type="submit" value="Save">       
+   </form>
+   <a href="/manager/manage_courses"><button type="button">Back</button></a> 
+    
+   {% if error %}
+       <p><strong>Error:</strong> {{ error }}
+   {% endif %}
+    
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styleh.css">
+    <title>Edit Student</title>
+</head>
+<body>
+    <h2>Edit Student</h2>
+    <form action="/teacher/edit_student" method="POST">
+        <input type="number" name="grade" placeholder="Grade: {{ s_grade }}" autofocus>
+        <input type="submit" value="Update Grade">       
+   </form>
+   <a href="/teacher"><button type="button">Back</button></a> 
+    
+   {% if error %}
+       <p><strong>Error:</strong> {{ error }}
+   {% endif %}
+    
+</body>
+</html>

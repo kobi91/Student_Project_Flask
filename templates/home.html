@@ -1,0 +1,53 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <title>Link CSS to HTML</title>          
+            <link rel="stylesheet" href=../static/style_home.css />
+        </head>
+        <body>
+        <header>
+        <h2>John Bryce</h2>
+        </header>
+        <a href="/login"><button type="button" class="TButton">Login</button></a>
+        <section>
+        <nav>
+            <ul>
+                <form action="/search" method="POST">
+                    <li>Search: <input type="text" name="search"</li>
+                    <button type="submit">Go</button><br><br>
+                    <input type="checkbox" name="courses_check" value="checked" checked>
+                    <span>Courses</span>
+                    <input type="checkbox" name="teachers_check" value="checked" checked>
+                    <span>Teachers</span>
+                    <input type="checkbox" name="students_check" value="checked" checked>
+                    <span>Students</span>
+                </form>    
+                <p>   
+                <li><a href="/students_list">Students</a></li>
+                <p>
+                <li><a href="/courses">Courses</a></li>
+                <p>
+                <li><a href="/statistics">Statistics</a></li>
+                <p>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+        
+        <article>
+            <h1>Message:</h1>
+            <p>The most popular course: {{ most_popular_course }}!</p>
+        </article>
+        </section>
+
+        <footer>
+        <p>Contact: johnbryce@gmail.com</p>
+        </footer>
+
+        </body>
+        </html>
+        

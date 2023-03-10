@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../static/stylet.css">
+     <title>Teacher Panel</title>   
+</head>
+<body>
+     <div class="header">
+          <h2>Teacher Panel</h2>
+                
+          <a href="/logout"><button type="button" class="TButton">Logout</button></a>
+          {% if course_statistics %}
+               {% for course, statistics in course_statistics.items() %}
+                    <a style="font-size: 120%;">Course: {{course}}&nbsp&nbsp</a>
+                    <a style="font-size: 120%;">Students Number: {{statistics[0]}}&nbsp</a>
+                    <a style="font-size: 120%;">Average Grade: {{statistics[1]}}&nbsp</a>
+                    <a style="font-size: 120%;">Passed Percentage: {{statistics[2]}}</a><br>
+               {% endfor %} 
+          {% endif %}  
+                     
+          <a href="/teacher/attendance"><button type="button" class="RButton">Student Attendance</button></a>
+          
+          <form action="/teacher/sorting_students" method="POST">
+               <div class="sorting">
+               <label for="sort">Sorted by:</label>
+               <select name="sortedby" id="sort">
+                    <option value="Select">-- Select Option --</option>
+                    <option value="Name">-- Name --</option>
+                    <option value="Grade↑">-- Grade↑ --</option>
+                    <option value="Grade↓">-- Grade↓ --</option>
+                    <option value="Course">-- Course --</option>
+               </select> 
+               <input type="submit" value="Submit" class="SButton">
+               </div> 
+          </form>    
+     </div>     
+     <ul>          
+          {% for name,age,id,address,phone,email,course,grade,missing in students %}       
+               <div>   
+                 <a class="bold">Student Name: {{name}}</a><br>
+                 <a>Age: {{age}}&nbsp</a>
+                 <a>ID: {{id}}&nbsp</a> 
+                 <a>Address: {{address}}&nbsp</a>
+                 <a>Phone: {{phone}}&nbsp</a>
+                 <a>Email: {{email}}&nbsp</a>
+                 <a>Course: {{course}}&nbsp</a>
+                 <a>Grade: {{grade}}&nbsp</a>
+                 <a>Missing Lessons: {{missing}}</a>
+               <form action="/teacher/edit_s" method="POST">
+                    <input type="hidden" name="grade" value="{{grade}}">
+                    <input type="hidden" name="missing" value="{{missing}}">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <input type="submit" value="Update Grade" class="edit">
+               </form>   
+               </div>        
+          {% endfor %}                                               
+     </ul>
+</body>
+</html>
+

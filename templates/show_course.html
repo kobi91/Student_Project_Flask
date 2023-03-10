@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>about</title>
+        <link rel="stylesheet" href=../static/style_table.css />
+    </head>
+    <body>
+        <center>  
+        <h1>JOHN BRYCE</h1>
+        <img height=200 width=250 src= ../static/Images/john_bryce.png />
+        <h2>Course Description</h2>
+
+        {% if student_name %}
+            <h3>{{student_name}} is studying:</h3>
+        {% endif %}   
+
+        {% if course_details %}
+            {% for course in course_details %}
+                <h3>Course: {{course[0]}}</h3>
+                <h4>Teacher: {{course[1]}}</h4>
+                <h4>Students Number: {{course[3]}}</h4>
+                <h4>Average Grade: {{course[4]}}</h4>
+                <h4>Passed Percentage: {{course[5]}}%</h4>
+                <h7>Description: .......</h7>
+            {% endfor %}
+        {% endif %}
+
+        </center>
+    </body>
+    </html>   

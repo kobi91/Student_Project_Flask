@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Student Attendance</title>
+</head>
+    <script defer src="../static/course_form.js"></script>
+<body>
+    <h2>Student Attendance</h2>
+    Date: {{date}}
+    <div class="selecting">
+    <lable>Attendance For:</label>
+        <select name="course" id="course">
+           <option value="Select">-- Select Course --</option>
+           {% for course, members in course_members.items() %}
+               <option value="{{course}}">-- {{course}} --</option>
+           {% endfor %}
+        </select>
+    </div>
+    <form>
+        <ul id="studentsList">   
+        </ul>
+   </form>
+   <br><a href="/teacher/attendance_list"><button type="button">Attendance Lists</button></a>    
+   <br><a href="/teacher"><button type="button">Back</button></a> 
+</body>
+</html>

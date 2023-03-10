@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Student Attendance</title>
+</head>
+    <script defer src="../static/date_form.js"></script>
+<body>
+    <h2>Student Attendance List</h2>
+    <div class="selecting">
+        <form>
+            <lable>Date:</label>
+            <select name="date" id="date">
+                <option value="Select">-- Select Date --</option>
+                {% for date in dates %}
+                    <option value="{{date}}">-- {{date}} --</option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+    <center> 
+        <table style="width:40%" id="attendanceList">             
+        </table> 
+   </center>
+   <form>
+        <button type="submit" onclick="deleteTable()">Delete Table</button>       
+    </form>
+    <a href="/teacher/attendance"><button type="button">Back</button></a>
+</body>
+</html>

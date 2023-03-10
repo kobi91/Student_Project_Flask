@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search</title>
+        <link rel="stylesheet" href=../static/style_table.css />
+    </head>
+    <body>
+        <center>  
+        <h1>JOHN BRYCE</h1>
+        <img height=200 width=250 src= ../static/Images/john_bryce.png />
+        <h2>Search Results For: {{search_value}}</h2>
+        
+        {% if courses or teachers or students %}
+            
+            {% if courses %}
+                <h3>Courses Results:</h3>
+                {% for course in courses %}
+                    <a href="/courses/{{ course[0] }}">{{ course[0] }}</a><br>
+                {% endfor %}
+            {% endif %}
+
+            {% if teachers %}
+                <h3>Teachers Results:</h3>
+                {% for teacher in teachers %}
+                    <a href="/courses/{{ teacher[1] }}">{{ teacher[1] }}</a><br>
+                {% endfor %} 
+            {% endif %}
+
+            {% if students %}
+                <h3>Students Results:</h3>
+                {% for student in students %}
+                    <a href="/courses/{{ student[0] }}">{{ student[0] }}</a><br>
+                {% endfor %} 
+            {% endif %} 
+
+        {% else %}    
+            <h3>No Results Found!</h3>
+        {% endif %}
+
+        </center>
+    </body>
+    </html>   

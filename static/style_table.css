@@ -1,0 +1,43 @@
+h1 {
+    background-color: black;
+    color: white;     
+}
+h2 {
+    background-color: black;
+    color: white;
+}
+body {
+    background-color: beige;
+    font-family: sans-serif;
+}
+   
+table, th, td {
+    border:1px solid black;
+}
+
+a:hover {
+    background-color: rgb(237, 235, 102);
+    color:black;
+}
+
+.next {
+    border-radius: 5px;
+}
+
+.previous {
+    border-radius: 5px;
+}
+
+.table_flow { 
+    height: 20em; overflow: auto; 
+}
+
+.cell_show:hover + .cell_hide {   
+    visibility: visible; 
+}
+
+.cell_hide{
+    visibility: hidden;
+}
+
+

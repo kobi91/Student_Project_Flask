@@ -1,0 +1,32 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <title>Link CSS to HTML</title>
+            <link rel="stylesheet" href=../static/style_table.css />
+        </head>
+        <body>
+            <center>  
+            <h1>JOHN BRYCE</h1>
+            <img height=200 width=250 src= ../static/Images/john_bryce.png />
+            <h2>Courses List</h2>
+            <div class="table_flow">
+                <table style="width:40%">
+                    <tr style="height:40px"><th>Course</th><th>Studends Names</th><th>Teacher</th></tr>
+                    {% for course, members in course_members.items() %}
+                        {% for name, teacher_name, teacher_email, students_number, average_grade, passed_percentage in courses %}
+                            {% if name == course %}
+                                <tr><td class=cell_show><a href="/courses/{{ course }}">{{course}}<a/></td><td class=cell_hide>{{members|join(', ')}}</td><td>{{teacher_name}}</td></tr>
+                            {% endif %} 
+                        {% endfor %}       
+                    {% endfor %}     
+                </table>
+            </div> 
+            </center>
+        </body>
+        </html>   
+        

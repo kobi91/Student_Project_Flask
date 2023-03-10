@@ -1,0 +1,28 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+            <title>Link CSS to HTML</title>
+            <link rel="stylesheet" href=../static/style_table.css />
+        </head>
+        <body>
+            <center>  
+            <h1>JOHN BRYCE</h1>
+            <img height=200 width=250 src= ../static/Images/john_bryce.png />
+            <h2>Students List</h2>
+            <div class="table_flow">
+                <table style="width:20%">
+					<tr style="height:40px"><th>Number</th><th>Student Name</th></tr>
+					{% for student_name in students_list %}
+						<tr><td>{{loop.index}}</td><td>{{student_name}}</td></tr>
+					{% endfor %}	                 
+                </table> 
+            </div>         
+            </center>
+        </body>
+        <html>   
+        

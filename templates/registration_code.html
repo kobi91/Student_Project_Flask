@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styleh.css">
+    <title>Set Registration Code</title>
+</head>
+<body>
+    <h2>Set Registration Code</h2>
+    <form action="/manage_users/set_registration_code" method="POST">
+        <select name="choose_authorization" id="choose_authorization">
+            <option value="Select">-- Select Authorization --</option>
+            <option value="teacher">-- Teacher --</option>
+            <option value="student">-- Student --</option>
+        </select><br>
+        <input type="password" name="set_code" placeholder="New Code">    
+        <input type="submit" value="Set Code">       
+   </form>
+   <a href="/manager/manage_users"><button type="button">Back</button></a> 
+    
+   {% if error %}
+       <p><strong>Error:</strong> {{ error }}
+   {% endif %}
+
+</body>
+</html>
