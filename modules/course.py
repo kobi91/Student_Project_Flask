@@ -165,16 +165,17 @@ class Courses():
         return total   
 
     def most_popular(self):
+        popular = []
         try:
             for k1,v1 in self.number_each_course().items():
-                for k1,v2 in self.number_each_course().items():
-                    if v1>v2:
-                        v = v1
-                    elif v2>v1:
-                        v = v2
+                for k2,v2 in self.number_each_course().items():
+                    if v1>=v2 and k1 not in popular:
+                        popular.append(k1)
+                    elif v2>v1 and k1 in popular:
+                        popular.remove(k1)
                     else:
-                        None
-            return [key for key,value in self.number_each_course().items() if value == v][0]
+                       continue
+            return popular
         except:
             return ""
 

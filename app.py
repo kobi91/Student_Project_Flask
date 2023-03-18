@@ -13,10 +13,15 @@ DB_FILE_NAME = "data.db"
 
 today = datetime.today().strftime('%d-%m-%Y')
 
-unauthorized_paths = ["home", "search", "attendance_table", "show_course", "students_table", "courses_table", "statistics_table", "about", "login", "user_login", "register", "successfully_reg", "static"]
+unauthorized_paths = ["messages", "home", "search", "attendance_table", "show_course", "students_table", "courses_table", "statistics_table", "about", "login", "user_login", "register", "successfully_reg", "static"]
 
 
 #------------------ H O M E  W E B ---------------------#  
+
+@app.route("/messages")
+def messages():
+    messages = ["Message 1", "Message 2", "Message 3", "Message 4", "Message 5"]
+    return messages
 
 @app.route("/")
 def home():
@@ -44,13 +49,14 @@ def about():
 
 @app.route("/courses/<name>")
 def show_course(name):
+    course = Courses() 
     student_name = None
     for k,v in course.course_members.items():
         if name in v:
            student_name = v[0].title()
            name = k
     course_details = [c for c in course.courses if c[0] == name or c[1] == name]
-    return render_template("show_course.html", course_details = course_details, student_name=student_name)
+    return render_template("show_course.html", course_details = course_details, student_name = student_name)
 
 @app.route("/search", methods = ["POST"])
 def search():
@@ -339,8 +345,8 @@ def sorting_courses():
 @app.route("/teacher")
 def teacher():
     try:
-        course = Courses()
         student = Students()
+        course = Courses()
         students = [s for s in student.students if s[6] in teacher_courses]
         course_statistics = {k:v for k,v in course.course_statistics.items() if k in teacher_courses}
         return render_template("teacher.html", students = students, course_statistics = course_statistics) 
@@ -376,7 +382,9 @@ def teacher_sorting_students():
         return redirect(url_for('teacher'))
     
 @app.route("/teacher/attendance", methods = ["POST", "GET"])
-def student_attendance(): 
+def student_attendance():
+    student = Students()
+    course = Courses() 
     course_members = {k:v for k,v in course.course_members.items() if k in teacher_courses}
     if request.args.get("attendance"):
         data = request.args.get("attendance").split(",")
@@ -403,6 +411,7 @@ def attendance_list():
 
 @app.route("/teacher/course_attendance", methods = ["GET"])
 def course_attendance():
+    course = Courses() 
     student_list = []
     selected_course = request.args.get("course")
     if selected_course:

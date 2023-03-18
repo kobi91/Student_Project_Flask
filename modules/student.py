@@ -149,7 +149,7 @@ class Students():
             with sqlite3.connect(DB_FILE_NAME) as conn:
                 mycursor = conn.cursor()
                 attendance_list = [a for a in mycursor.execute(f'SELECT StudentName, Course, "{selected_date}" FROM attendance WHERE "{selected_date}" IS NOT NULL') if a[1] in teacher_courses]
-            return attendance_list
+            return sorted(attendance_list, key = lambda x: x[1])
         else:
             return []
             
