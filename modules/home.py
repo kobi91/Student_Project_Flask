@@ -35,3 +35,19 @@ class HomePage():
             mycursor.execute("DELETE FROM messages")
             conn.commit()
             
+    def search(self, courses_checkbox, teachers_checkbox, students_checkbox, search_value):
+         with sqlite3.connect(DB_FILE_NAME) as conn:
+            mycursor = conn.cursor()
+            if courses_checkbox == "checked":
+                courses_list = mycursor.execute(f"SELECT * FROM courses WHERE CourseName LIKE '%{search_value}%'").fetchall()
+            else:
+                courses_list = None
+            if teachers_checkbox == "checked":    
+                students_list = mycursor.execute(f"SELECT * FROM students WHERE StudentName LIKE '%{search_value}%'").fetchall()
+            else:
+                students_list = None   
+            if students_checkbox == "checked":
+                teacher_list = mycursor.execute(f"SELECT * FROM courses WHERE TeacherName LIKE '%{search_value}%'").fetchall()
+            else:
+                teacher_list = None
+            return courses_list, students_list, teacher_list

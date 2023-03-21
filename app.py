@@ -65,24 +65,11 @@ def search():
     courses_checkbox = request.form.get("courses_check")
     teachers_checkbox = request.form.get("teachers_check")
     students_checkbox = request.form.get("students_check")
-    with sqlite3.connect(DB_FILE_NAME) as conn:
-            mycursor = conn.cursor()
-            if search_value != "":
-                if courses_checkbox == "checked":
-                    courses_list = mycursor.execute(f"SELECT * FROM courses WHERE CourseName LIKE '%{search_value}%'").fetchall()
-                else:
-                    courses_list = None
-                if teachers_checkbox == "checked":    
-                    students_list = mycursor.execute(f"SELECT * FROM students WHERE StudentName LIKE '%{search_value}%'").fetchall()
-                else:
-                    students_list = None   
-                if students_checkbox == "checked":
-                    teacher_list = mycursor.execute(f"SELECT * FROM courses WHERE TeacherName LIKE '%{search_value}%'").fetchall()
-                else:
-                    teacher_list = None
-            else:
-                return redirect(url_for('home'))    
-    return render_template("search.html", courses = courses_list, teachers = teacher_list, students = students_list, search_value = search_value)
+    if search_value != "":
+        courses_list, students_list, teacher_list = home_page.search(courses_checkbox, teachers_checkbox, students_checkbox, search_value)
+    else:
+        return redirect(url_for('home'))    
+    return render_template("search.html", courses = courses_list, students = students_list, teachers = teacher_list, search_value = search_value)
 
 
 #--------------- L O G I N / L O G O U T ---------------#

@@ -1,3 +1,4 @@
+const root = ReactDOM.createRoot(document.getElementById("messages"));
 let messages = [];
 let generator = "";
 const a = 10000;
@@ -36,7 +37,7 @@ function getData() {
 }
 
 function renderData() { 
-    ReactDOM.render(<MessagesList messages = {messages}/>, document.getElementById("messages"));         
+    root.render(<MessagesList messages = {messages}/>);        
 }
 
 getData();
