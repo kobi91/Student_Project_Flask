@@ -5,6 +5,7 @@ from datetime import datetime
 from modules.user import Users
 from modules.student import Students
 from modules.course import Courses
+from modules.home import HomePage
 
 app = Flask(__name__)
 app.secret_key = 'kobitamam'
@@ -13,14 +14,14 @@ DB_FILE_NAME = "data.db"
 
 today = datetime.today().strftime('%d-%m-%Y')
 
-unauthorized_paths = ["messages", "home", "search", "attendance_table", "show_course", "students_table", "courses_table", "statistics_table", "about", "login", "user_login", "register", "successfully_reg", "static"]
+unauthorized_paths = ["home_messages", "home", "search", "attendance_table", "show_course", "students_table", "courses_table", "statistics_table", "about", "login", "user_login", "register", "successfully_reg", "static"]
 
 
 #------------------ H O M E  W E B ---------------------#  
 
 @app.route("/messages")
-def messages():
-    messages = ["Message 1", "Message 2", "Message 3", "Message 4", "Message 5"]
+def home_messages():
+    messages = [s[1] for s in home_page.messages]
     return messages
 
 @app.route("/")
@@ -146,8 +147,32 @@ def successfully_reg():
 @app.route("/manager")
 def manager():
     return render_template("manager.html")
-    
 
+@app.route("/manager/manage_home", methods = ["POST", "GET"])
+def manage_home_page():
+    if request.method=='POST':
+        message = request.form["message"]
+        home_page.add_message(message)
+    messages = home_page.create_messages_list()      
+    return render_template("manage_home.html", messages = messages)
+
+@app.route("/manage_home/delete_message", methods = ["POST"])
+def delete_message():
+    message_id = request.form["message_id"]
+    try:
+        home_page.delete(message_id)
+        return redirect(url_for('manage_home_page'))
+    except:
+        return redirect(url_for('manage_home_page')) 
+
+@app.route("/manage_home/delete_messages")
+def delete_messages():
+    try:
+        home_page.delete_all()
+        return redirect(url_for('manage_home_page'))  
+    except:
+        return redirect(url_for('manage_home_page'))
+    
 @app.route("/manager/manage_users")
 def manage_users(): 
     try:
@@ -433,4 +458,5 @@ if __name__ == "__main__":
     user = Users()
     student = Students()
     course = Courses()
+    home_page = HomePage()
     app.run(debug = True, port = 5000)
