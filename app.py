@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request, make_response, session, abort, flash, jsonify
 from flask_login import login_required, login_user, logout_user, current_user, LoginManager
-import sqlite3
+import sqlite3, os
 from datetime import datetime
 from modules.user import Users
 from modules.student import Students
@@ -14,20 +14,28 @@ DB_FILE_NAME = "data.db"
 
 today = datetime.today().strftime('%d-%m-%Y')
 
-unauthorized_paths = ["home_messages", "home", "search", "attendance_table", "show_course", "students_table", "courses_table", "statistics_table", "about", "login", "user_login", "register", "successfully_reg", "static"]
+unauthorized_paths = ["home_images", "home_messages", "home", "search", "attendance_table", "show_course", "students_table", "courses_table", "statistics_table", "about", "login", "user_login", "register", "successfully_reg", "static"]
 
 
 #------------------ H O M E  W E B ---------------------#  
+
+@app.route("/")
+def home():
+    course = Courses()
+    return render_template("home.html", most_popular_course = course.most_popular_course)
 
 @app.route("/messages")
 def home_messages():
     messages = [s[1] for s in home_page.messages]
     return messages
 
-@app.route("/")
-def home():
-    course = Courses()
-    return render_template("home.html", most_popular_course = course.most_popular_course)
+@app.route("/images")
+def home_images():
+    images_folder = "static/Images/home/"
+    images_urls = []
+    for filename in os.listdir(images_folder):
+        images_urls.append(os.path.join(images_folder, filename))
+    return images_urls
 
 @app.route("/students_list")
 def students_table():
@@ -187,7 +195,7 @@ def edit_u():
     username = request.form["user"]
     password = request.form["pass"]
     email = request.form["email"]
-    authorization = request.form["authorization1"]
+    authorization = request.form["authorization"]
     user_name = username
     return render_template("edit_user.html", old_user = username, old_pass = password, old_email = email, old_authorization = authorization)
 

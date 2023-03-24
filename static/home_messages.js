@@ -1,4 +1,4 @@
-const root = ReactDOM.createRoot(document.getElementById("messages"));
+const messageRoot = ReactDOM.createRoot(document.getElementById("messages"));
 let messages = [];
 let generator = "";
 const a = 10000;
@@ -33,11 +33,11 @@ function getData() {
     axios.get("/messages").then((response) => {
     messages = response.data;
     }) 
-   .catch(error => console.error(error));     
+   .catch(error => console.error(error));
 }
 
 function renderData() { 
-    root.render(<MessagesList messages = {messages}/>);        
+    messageRoot.render(<MessagesList/>);        
 }
 
 getData();

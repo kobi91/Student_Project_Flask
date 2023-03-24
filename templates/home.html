@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/babel" src="../static/home_messages.js"></script> 
+    <script type="text/babel" src="../static/home_images.js"></script>
 <body>
 <header>
 <h2>John Bryce</h2>
@@ -51,10 +52,12 @@
     {% else %}
         <p>The most popular course: {{ most_popular_course|join(', ')}}!</p>
     {% endif %}  
-
+    
     <div id="messages"></div>
+    <div class="images" id="images"></div>
 
 </article>
+
 </section>
     <footer>
         <p>Contact: johnbryce@gmail.com</p>

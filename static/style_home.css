@@ -69,8 +69,11 @@
     border-radius: 4px;
    }
 
-   .TButton:hover {
+  .TButton:hover {
     background-color: #bbb;
    }
-
   
+  .images {
+    width: auto;
+    height: auto;
+   }
