@@ -1,17 +1,20 @@
 const messageRoot = ReactDOM.createRoot(document.getElementById("messages"));
 let messages = [];
 let generator = "";
-const a = 10000;
+let a = 100;
 const c = 5000;
-let b = 5000;
-let myInterval = setInterval(generate, b);
-
+let b = 100;
+let GenerateInterval = setInterval(generate, b);
+let DataInterval = setInterval(renderData, a);
 
 setTimeout(() =>{
-    clearInterval(myInterval);
+    clearInterval(GenerateInterval);
+    clearInterval(DataInterval);
+    a = 10000;
     b = a * messages.length;
-    myInterval = setInterval(generate, b); 
-}, 6000);
+    GenerateInterval = setInterval(generate, b);
+    DataInterval = setInterval(renderData, a); 
+}, 200);
 
 function generate() {
   generator = generateValues(messages);  
@@ -45,5 +48,3 @@ setInterval(getData, c);
 
 generate();
 
-renderData();
-setInterval(renderData, a);

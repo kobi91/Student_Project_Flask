@@ -20,6 +20,12 @@ a:hover {
     color:black;
 }
 
+.table a
+{
+    display:block;
+    text-decoration:none;
+}
+
 .next {
     border-radius: 5px;
 }
